@@ -56,7 +56,7 @@ public class UserData {
 	}
 	
 	private void setNumSiblings() {
-		prompt = "Please enter the number of siblings you have in digit form: ";
+		prompt = "Please enter the number of siblings you have: ";
 		numSiblings = input.getNumber(prompt);
 	}
 	
