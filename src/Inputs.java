@@ -70,7 +70,7 @@ public class Inputs {
 					answer = Integer.parseInt(output);
 					isEmpty = false;
 				} catch (NumberFormatException ex) {
-					System.out.println("Your entry is not a number in digit form.");
+					System.out.println("Your entry is not a whole number in digit form.");
 				}
 			}
 		} while(isEmpty);
