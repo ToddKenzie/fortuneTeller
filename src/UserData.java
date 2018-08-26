@@ -8,7 +8,7 @@ public class UserData {
 	private int birthMonth;
 	private String favoriteColor;
 	private int numSiblings;
-	String prompt;
+	private String prompt;
 	private Inputs input;
 	
 	public UserData() {
