@@ -19,11 +19,12 @@ public class Inputs {
 			checkQuit(output);
 			if (output.equals("")) {
 				System.out.println("You did not enter a value.");
-			} else if (output.toLowerCase().equals("help")) {
+			} else if (output.equalsIgnoreCase("help")) {
 				System.out.println("There is no 'help' for this command.");
 				System.out.print("Do you want to save this as your answer?  Enter Y to use as answer.");
 				String verify = input.nextLine();
 				if (verify.equals("Y")) {
+					System.out.println("Answer saved as " + output);
 					isEmpty = false;
 				}
 			} else {
@@ -43,7 +44,7 @@ public class Inputs {
 			checkQuit(output);
 			if (output.equals("")) {
 				System.out.println("You did not enter a value.");
-			} else if (output.toLowerCase().equals("help")) {
+			} else if (output.equalsIgnoreCase("help")) {
 					System.out.println(help);
 			} else {
 				isEmpty = false;
@@ -63,7 +64,7 @@ public class Inputs {
 			checkQuit(output);
 			if (output.equals("")) {
 				System.out.println("You did not enter a value.");
-			} else if (output.toLowerCase().equals("help")) {
+			} else if (output.equalsIgnoreCase("help")) {
 				System.out.println("Please enter a number in digit form (Ex: 1, 2, 3, etc)");
 			} else {
 				try {
