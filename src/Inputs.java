@@ -80,7 +80,7 @@ public class Inputs {
 	}
 	
 	public void checkQuit(String output) {
-		if (output.toLowerCase().equals("quit")) {
+		if (output.equalsIgnoreCase("quit")) {
 			System.out.println("Nobody likes a quitter...");
 			System.exit(0);
 		}
