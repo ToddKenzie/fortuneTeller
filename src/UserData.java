@@ -8,7 +8,7 @@ public class UserData {
 	private int birthMonth;
 	private String favoriteColor;
 	private int numSiblings;
-	private String prompt;
+	private String promptMessage;
 	private Inputs input;
 	
 	public UserData() {
@@ -22,36 +22,36 @@ public class UserData {
 	}
 
 	private void setFirstName() {
-		prompt = "Please enter your First Name: ";
-		String name = input.promptUserToGetString(prompt);
+		promptMessage = "Please enter your First Name: ";
+		String name = input.promptUserToGetString(promptMessage);
 		firstName = name.substring(0,1).toUpperCase() + name.substring(1);
 	}
 	
 	private void setLastName() {
-		prompt = "Please enter your Last Name: ";
-		String name = input.promptUserToGetString(prompt);
+		promptMessage = "Please enter your Last Name: ";
+		String name = input.promptUserToGetString(promptMessage);
 		lastName = name.substring(0,1).toUpperCase() + name.substring(1);
 	}
 	
 	private void setAge() {
-		prompt = "Please enter your age: ";
-		age = input.promptUserToGetNumber(prompt);
+		promptMessage = "Please enter your age: ";
+		age = input.promptUserToGetNumber(promptMessage);
 	}
 	
 	private void setBirthMonth() {
-		prompt = "Please enter your birth month in digit form (January = 1, etc): ";
-		birthMonth = input.promptUserToGetNumber(prompt);
+		promptMessage = "Please enter your birth month in digit form (January = 1, etc): ";
+		birthMonth = input.promptUserToGetNumber(promptMessage);
 	}
 	
 	private void setFavoriteColor() {
-		prompt = "Please enter your favorite ROYGBIV color.  (Enter 'help' for more info): ";
-		String help = "ROYGBIV colors are red, orange, yellow, green, blue, indigo, and violet.\n";
-		favoriteColor = input.promptUserToGetString(prompt, help);
+		promptMessage = "Please enter your favorite ROYGBIV color.  (Enter 'help' for more info): ";
+		String helpMessage = "ROYGBIV colors are red, orange, yellow, green, blue, indigo, and violet.\n";
+		favoriteColor = input.promptUserToGetString(promptMessage, helpMessage);
 	}
 	
 	private void setNumSiblings() {
-		prompt = "Please enter the number of siblings you have: ";
-		numSiblings = input.promptUserToGetNumber(prompt);
+		promptMessage = "Please enter the number of siblings you have: ";
+		numSiblings = input.promptUserToGetNumber(promptMessage);
 	}
 	
 	public String getFirstName() {

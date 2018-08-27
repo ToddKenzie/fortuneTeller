@@ -10,11 +10,11 @@ public class Inputs {
 		input = new Scanner(System.in);
 	}
 	
-	public String promptUserToGetString(String prompt) {
+	public String promptUserToGetString(String promptMessage) {
 		boolean isEmpty = true;
 		String output;
 		do {
-			System.out.print(prompt);
+			System.out.print(promptMessage);
 			output = input.nextLine();
 			checkQuit(output);
 			if (output.equals("")) {
@@ -35,17 +35,17 @@ public class Inputs {
 		return output;
 	}
 	
-	public String promptUserToGetString(String prompt, String help) {
+	public String promptUserToGetString(String promptMessage, String helpMessage) {
 		boolean isEmpty = true;
 		String output;
 		do {
-			System.out.print(prompt);
+			System.out.print(promptMessage);
 			output = input.nextLine();
 			checkQuit(output);
 			if (output.equals("")) {
 				System.out.println("You did not enter a value.");
 			} else if (output.equalsIgnoreCase("help")) {
-					System.out.println(help);
+					System.out.println(helpMessage);
 			} else {
 				isEmpty = false;
 			}
@@ -54,12 +54,12 @@ public class Inputs {
 		return output;
 	}
 
-	public int promptUserToGetNumber(String prompt) {
+	public int promptUserToGetNumber(String promptMessage) {
 		boolean isEmpty = true;
 		int answer = 0;
 		String output;
 		do {
-			System.out.print(prompt);
+			System.out.print(promptMessage);
 			output = input.nextLine();
 			checkQuit(output);
 			if (output.equals("")) {
