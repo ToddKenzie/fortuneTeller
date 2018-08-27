@@ -10,7 +10,7 @@ public class Inputs {
 		input = new Scanner(System.in);
 	}
 	
-	public String getString(String prompt) {
+	public String promptUserToGetString(String prompt) {
 		boolean isEmpty = true;
 		String output;
 		do {
@@ -35,7 +35,7 @@ public class Inputs {
 		return output;
 	}
 	
-	public String getString(String prompt, String help) {
+	public String promptUserToGetString(String prompt, String help) {
 		boolean isEmpty = true;
 		String output;
 		do {
@@ -54,7 +54,7 @@ public class Inputs {
 		return output;
 	}
 
-	public int getNumber(String prompt) {
+	public int promptUserToGetNumber(String prompt) {
 		boolean isEmpty = true;
 		int answer = 0;
 		String output;
