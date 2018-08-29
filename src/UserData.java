@@ -11,6 +11,30 @@ public class UserData {
 	private String promptMessage;
 	private Inputs input;
 	
+	public String getFirstName() {
+		return firstName;
+	}
+	
+	public String getLastName() {
+		return lastName;
+	}
+	
+	public int getAge() {
+		return age;
+	}
+	
+	public int getBirthMonth() {
+		return birthMonth;
+	}
+	
+	public String getFavoriteColor() {
+		return favoriteColor;
+	}
+	
+	public int getNumSiblings() {
+		return numSiblings;
+	}
+
 	public UserData() {
 		input = new Inputs();
 		setFirstName();
@@ -52,30 +76,6 @@ public class UserData {
 	private void setNumSiblings() {
 		promptMessage = "Please enter the number of siblings you have: ";
 		numSiblings = input.promptUserToGetNumber(promptMessage);
-	}
-	
-	public String getFirstName() {
-		return firstName;
-	}
-	
-	public String getLastName() {
-		return lastName;
-	}
-	
-	public int getAge() {
-		return age;
-	}
-	
-	public int getBirthMonth() {
-		return birthMonth;
-	}
-	
-	public String getFavoriteColor() {
-		return favoriteColor;
-	}
-	
-	public int getNumSiblings() {
-		return numSiblings;
 	}
 	
 	public String toString() {
