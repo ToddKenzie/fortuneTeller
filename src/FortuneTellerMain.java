@@ -1,6 +1,6 @@
 
 
-public class TestCase {
+public class FortuneTellerMain {
 
 	public static void main(String[] args) {
 		

@@ -23,7 +23,6 @@ public class UserInput {
 		this.helpMessage = helpMessage;
 		boolean outputShouldBeANumber = false;
 		String userEnteredData = promptUserForAValue(outputShouldBeANumber);
-		System.out.println();
 		return userEnteredData;
 	}
 
@@ -31,7 +30,6 @@ public class UserInput {
 		helpMessage = "Please enter a number in digit form (Ex: 1, 2, 3, etc)";
 		boolean outputShouldBeANumber = true;
 		String userEnteredData = promptUserForAValue(outputShouldBeANumber);
-		System.out.println();
 		return Integer.parseInt(userEnteredData);
 	}
 	
@@ -43,6 +41,7 @@ public class UserInput {
 			userEnteredData = input.nextLine();
 			isInvalidValue = checkOutputForInvalidValues(userEnteredData, outputShouldBeANumber);
 		} while (isInvalidValue);
+		System.out.println();
 		return userEnteredData;
 	}
 
@@ -55,13 +54,11 @@ public class UserInput {
 
 	private boolean checkOutputForInvalidValues(String output, boolean outputShouldBeNumber) {
 		checkOutputForQuit(output);
-		if (!checkOutputForBlank(output)) {
-			if (!checkOutputForHelp(output, helpMessage)) {
+		if (!checkOutputForBlank(output) && !checkOutputForHelp(output)) {
 				if (outputShouldBeNumber) {
 					return !checkOutputCanConvertToInteger(output);
 				}
 				return false;
-			}
 		}
 		return true;
 	}
@@ -75,24 +72,30 @@ public class UserInput {
 		return userEnteredBlank;
 	}
 
-	private boolean checkOutputForHelp(String output, String helpMessage) {
+	private boolean checkOutputForHelp(String output) {
 		boolean userAskedForHelp = true;
 		if (output.equalsIgnoreCase("help")) {
-			if (helpMessage.equals("")) {
-				System.out.println("There is no 'help' for this command.");
-				System.out.print("Do you want to save this as your answer?  Enter Y to use as answer.");
-				String verify = input.nextLine();
-				if (verify.equalsIgnoreCase("Y")) {
-					System.out.println("Answer saved as " + output);
-					userAskedForHelp = false;
-				}
-			} else {
-				System.out.println(helpMessage);
-			}
+			userAskedForHelp = returnHelpMessage(output);
 		} else {
 			userAskedForHelp = false;
 		}
 		return userAskedForHelp;
+	}
+	
+	private boolean returnHelpMessage(String output) {
+		boolean userReceivedHelp = true;
+		if (helpMessage.equals("")) {
+			System.out.println("There is no 'help' for this command.");
+			System.out.print("Do you want to save this as your answer?  Enter Y to use as answer.");
+			String verify = input.nextLine();
+			if (verify.equalsIgnoreCase("Y")) {
+				System.out.println("Answer saved as " + output);
+				userReceivedHelp = false;
+			}
+		} else {
+			System.out.println(helpMessage);
+		}
+		return userReceivedHelp;
 	}
 
 	private boolean checkOutputCanConvertToInteger(String output) {
