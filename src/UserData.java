@@ -8,8 +8,7 @@ public class UserData {
 	private int birthMonth;
 	private String favoriteColor;
 	private int numSiblings;
-	private String promptMessage;
-	private Inputs input;
+	private UserInput userDataRequest;
 	
 	public String getFirstName() {
 		return firstName;
@@ -36,7 +35,7 @@ public class UserData {
 	}
 
 	public UserData() {
-		input = new Inputs();
+		userDataRequest = new UserInput();
 		setFirstName();
 		setLastName();
 		setAge();
@@ -46,36 +45,36 @@ public class UserData {
 	}
 
 	private void setFirstName() {
-		promptMessage = "Please enter your First Name: ";
-		String name = input.promptUserToGetString(promptMessage);
+		userDataRequest.setPromptMessage("Please enter your First Name: ");
+		String name = userDataRequest.promptUserToGetString();
 		firstName = name.substring(0,1).toUpperCase() + name.substring(1);
 	}
 	
 	private void setLastName() {
-		promptMessage = "Please enter your Last Name: ";
-		String name = input.promptUserToGetString(promptMessage);
+		userDataRequest.setPromptMessage("Please enter your Last Name: ");
+		String name = userDataRequest.promptUserToGetString();
 		lastName = name.substring(0,1).toUpperCase() + name.substring(1);
 	}
 	
 	private void setAge() {
-		promptMessage = "Please enter your age: ";
-		age = input.promptUserToGetNumber(promptMessage);
+		userDataRequest.setPromptMessage("Please enter your age: ");
+		age = userDataRequest.promptUserToGetNumber();
 	}
 	
 	private void setBirthMonth() {
-		promptMessage = "Please enter your birth month in digit form (January = 1, etc): ";
-		birthMonth = input.promptUserToGetNumber(promptMessage);
+		userDataRequest.setPromptMessage("Please enter your birth month in digit form (January = 1, etc): ");
+		birthMonth = userDataRequest.promptUserToGetNumber();
 	}
 	
 	private void setFavoriteColor() {
-		promptMessage = "Please enter your favorite ROYGBIV color.  (Enter 'help' for more info): ";
+		userDataRequest.setPromptMessage("Please enter your favorite ROYGBIV color.  (Enter 'help' for more info): ");
 		String helpMessage = "ROYGBIV colors are red, orange, yellow, green, blue, indigo, and violet.\n";
-		favoriteColor = input.promptUserToGetString(promptMessage, helpMessage);
+		favoriteColor = userDataRequest.promptUserToGetString(helpMessage);
 	}
 	
 	private void setNumSiblings() {
-		promptMessage = "Please enter the number of siblings you have: ";
-		numSiblings = input.promptUserToGetNumber(promptMessage);
+		userDataRequest.setPromptMessage("Please enter the number of siblings you have: ");
+		numSiblings = userDataRequest.promptUserToGetNumber();
 	}
 	
 	public String toString() {

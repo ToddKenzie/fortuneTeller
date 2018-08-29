@@ -1,53 +1,60 @@
 
 import java.util.Scanner;
 
-public class Inputs {
+public class UserInput {
 
 	private Scanner input;
+	private String promptMessage;
+	private String helpMessage;
 
-	public Inputs() {
+	public void setPromptMessage(String promptMessage) {
+		this.promptMessage = promptMessage;
+	}
+	
+	public UserInput() {
 		input = new Scanner(System.in);
 	}
 
-	public String promptUserToGetString(String promptMessage) {
-		return promptUserToGetString(promptMessage, "");
+	public String promptUserToGetString() {
+		return promptUserToGetString("");
 	}
 
-	public String promptUserToGetString(String promptMessage, String helpMessage) {
+	public String promptUserToGetString(String helpMessage) {
+		this.helpMessage = helpMessage;
+		boolean outputShouldBeANumber = false;
+		String userEnteredData = promptUserForAValue(outputShouldBeANumber);
+		System.out.println();
+		return userEnteredData;
+	}
+
+	public int promptUserToGetNumber() {
+		helpMessage = "Please enter a number in digit form (Ex: 1, 2, 3, etc)";
+		boolean outputShouldBeANumber = true;
+		String userEnteredData = promptUserForAValue(outputShouldBeANumber);
+		System.out.println();
+		return Integer.parseInt(userEnteredData);
+	}
+	
+	private String promptUserForAValue(boolean outputShouldBeANumber) {
 		boolean isInvalidValue = true;
-		String output;
+		String userEnteredData;
 		do {
 			System.out.print(promptMessage);
-			output = input.nextLine();
-			checkOutputForQuit(output);
-			isInvalidValue = checkOutputForInvalidValues(output, helpMessage, false);
+			userEnteredData = input.nextLine();
+			isInvalidValue = checkOutputForInvalidValues(userEnteredData, outputShouldBeANumber);
 		} while (isInvalidValue);
-		System.out.println();
-		return output;
+		return userEnteredData;
 	}
 
-	public int promptUserToGetNumber(String promptMessage) {
-		boolean isInvalidValue = true;
-		String helpMessage = "Please enter a number in digit form (Ex: 1, 2, 3, etc)";
-		String output;
-		do {
-			System.out.print(promptMessage);
-			output = input.nextLine();
-			checkOutputForQuit(output);
-			isInvalidValue = checkOutputForInvalidValues(output, helpMessage, true);
-		} while (isInvalidValue);
-		System.out.println();
-		return Integer.parseInt(output);
-	}
-
-	public void checkOutputForQuit(String output) {
+	private void checkOutputForQuit(String output) {
 		if (output.equalsIgnoreCase("quit")) {
 			System.out.println("Nobody likes a quitter...");
 			System.exit(0);
 		}
 	}
 
-	public boolean checkOutputForInvalidValues(String output, String helpMessage, boolean outputShouldBeNumber) {
+	private boolean checkOutputForInvalidValues(String output, boolean outputShouldBeNumber) {
+		checkOutputForQuit(output);
 		if (!checkOutputForBlank(output)) {
 			if (!checkOutputForHelp(output, helpMessage)) {
 				if (outputShouldBeNumber) {
@@ -59,7 +66,7 @@ public class Inputs {
 		return true;
 	}
 
-	public boolean checkOutputForBlank(String output) {
+	private boolean checkOutputForBlank(String output) {
 		boolean userEnteredBlank = false;
 		if (output.equals("")) {
 			System.out.println("You did not enter a value.");
@@ -68,14 +75,14 @@ public class Inputs {
 		return userEnteredBlank;
 	}
 
-	public boolean checkOutputForHelp(String output, String helpMessage) {
+	private boolean checkOutputForHelp(String output, String helpMessage) {
 		boolean userAskedForHelp = true;
 		if (output.equalsIgnoreCase("help")) {
 			if (helpMessage.equals("")) {
 				System.out.println("There is no 'help' for this command.");
 				System.out.print("Do you want to save this as your answer?  Enter Y to use as answer.");
 				String verify = input.nextLine();
-				if (verify.equals("Y")) {
+				if (verify.equalsIgnoreCase("Y")) {
 					System.out.println("Answer saved as " + output);
 					userAskedForHelp = false;
 				}
@@ -88,7 +95,7 @@ public class Inputs {
 		return userAskedForHelp;
 	}
 
-	public boolean checkOutputCanConvertToInteger(String output) {
+	private boolean checkOutputCanConvertToInteger(String output) {
 		try {
 			Integer.parseInt(output);
 			return true;
